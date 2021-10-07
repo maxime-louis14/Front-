@@ -1,4 +1,4 @@
-export default async function retrieveContent() {
+export default async function gillHistoire() {
     const url = "https://api.gill-cote-bistro.fr/histoires?_sort=id:asc";
   
     const response = await fetch(url);

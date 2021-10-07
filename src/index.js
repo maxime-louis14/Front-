@@ -1,11 +1,13 @@
+import retrieveContent from './query.js';
+import gillSugg from './Suggestions';
+import  gillCote from './special';
+import gillHistoire from './histoire';
 
-import retrieveContent from './Suggestions';
-import retrieveContent from './special';
-import retrieveContent from './Histoire-du-restaurant';
 
 async function showContent() {
   try {
     const content = await retrieveContent();
+    console.log(content);
 
     let elt = document.createElement('div');
     elt.innerHTML = content.join('<br />');
