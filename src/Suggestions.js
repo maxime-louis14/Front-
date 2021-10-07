@@ -1,4 +1,4 @@
-export default async function gillSugg() {
+export default async function gillSuggestions() {
     const url = "https://api.gill-cote-bistro.fr/suggestions?_sort=id:asc";
   
     const response = await fetch(url);

@@ -1,16 +1,21 @@
 import retrieveContent from './query.js';
-import gillSugg from './Suggestions';
-import  gillCote from './special';
-import gillHistoire from './histoire';
+import gillSuggestions from './Suggestions';
+import  gillspecial from './special';
+import gillhistoire from './histoire';
 
 
 async function showContent() {
   try {
     const content = await retrieveContent();
-    console.log(content);
+    const Suggestions = await gillSuggestions();
+    console.log(Suggestions);
+    const special = await gillspecial();
+    console.log(special);
+    const histoire = await gillhistoire();
+    console.log(histoire);
 
-    let elt = document.createElement('div');
-    elt.innerHTML = content.join('<br />');
+    let elt = document.createElement('p');
+    elt.textContent = content[0].title;
 
     document.getElementsByTagName('body')[0].appendChild(elt);
   } catch (e) {
