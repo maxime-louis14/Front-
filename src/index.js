@@ -1,4 +1,7 @@
-import retrieveContent from './query.js';
+
+import retrieveContent from './Suggestions';
+import retrieveContent from './special';
+import retrieveContent from './Histoire-du-restaurant';
 
 async function showContent() {
   try {
