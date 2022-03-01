@@ -1,23 +1,53 @@
-import retrieveContent from './query.js';
-import gillSuggestions from './Suggestions';
+import gillSuggestions from './suggestions';
 import  gillspecial from './special';
 import gillhistoire from './histoire';
 
 
 async function showContent() {
   try {
-    const content = await retrieveContent();
-    const Suggestions = await gillSuggestions();
-    console.log(Suggestions);
-    const special = await gillspecial();
-    console.log(special);
     const histoire = await gillhistoire();
     console.log(histoire);
+    const special = await gillspecial();
+    console.log(special);
+    const Suggestions = await gillSuggestions();
+    console.log(Suggestions);
+    const base_api = "https://www.gill-cote-bistro.fr";
+    
+    let firstParagraphe = document.createElement('div');
+    firstParagraphe.innerHTML = histoire[0].first_paragraph;
+    document.querySelector('#histoire').appendChild(firstParagraphe);
 
-    let elt = document.createElement('p');
-    elt.textContent = content[0].title;
+    //Je veux récupérer les texte et les images.
 
-    document.getElementsByTagName('body')[0].appendChild(elt);
+    for(let i=0; i<special.length ; i++) {
+      let title = document.createElement('h2');
+      title.textContent = special[i].title;
+      let img = document.createElement('img');
+      img.src = base_api + special[i].img.url;
+      let description = document.createElement('p');
+      document.querySelector('.special').append(title, img, description);
+    }
+
+    
+    let suggest = document.createElement('h3');
+    suggest.textContent = suggestion[0].suggestionsStarter;
+    let suggest2 = document.createElement('p');
+    suggest2.textContent = suggestion[0].suggestionsStarterPrice;
+    let suggest3 = document.createElement('h3');
+    suggest3.textContent = suggestion[0].suggestionsPie;
+    let suggest4 = document.createElement('p');
+    suggest4.textContent = suggestion[0].suggestionsPiePrice;
+    let suggest5 = document.createElement('h3');
+    suggest5.textContent = suggestion[0].suggestionsMain;
+    let suggest6 = document.createElement('p');
+    suggest6.textContent = suggestion[0].suggestionsMainPrice;
+    let suggest7 = document.createElement('h3');
+    suggest7.textContent = suggestion[0].suggestionsDessert;
+    let suggest8 = document.createElement('p');
+    suggest8.textContent = suggestion[0].suggestionsDessertPrice;
+    document.querySelector('.suggestion').append(suggest, suggest2, suggest3, suggest4, suggest5, suggest6, suggest7, suggest8);
+    
+    
   } catch (e) {
     console.log('Error', e);
   }
